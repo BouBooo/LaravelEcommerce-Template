@@ -2,7 +2,21 @@
 
 @section('content')
 
-{!! Breadcrumbs::render('contact') !!}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Contact Us</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="category.html">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
 
 <!--================Contact Area =================-->
 <section class="contact_area section_gap_bottom">
@@ -31,7 +45,7 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                <form class="row contact_form" action="" method="POST" id="contactForm" novalidate="novalidate">
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'">

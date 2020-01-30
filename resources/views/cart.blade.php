@@ -2,25 +2,27 @@
 
 @section('content')
 
-{!! Breadcrumbs::render('cart') !!}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Cart</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="category.html">Cart</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
 
 <!--================Cart Area =================-->
 <section class="cart_area">
     <div class="container">
-        <div class="cart_inner">
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
-            @if (Cart::count() > 0)
-                <h2>{{ Cart::count() }} item(s) in shopping cart</h2> 
-            
+        <div class="cart_inner">    
+            <h2>1 item(s) in shopping cart</h2> 
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -33,29 +35,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (Cart::content() as $product)
                         <tr>
                             <td>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <a href="{{ route('shop.show', $product->model->slug) }}">
-                                            <img class="img-thumbnail w-20" src="{{ Voyager::image($product->model->image) }}" alt="">
+                                        <a href="#">
+                                            <img class="img-thumbnail w-20" src="{{ asset('img/logo.png')}}" alt="">
                                         </a>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="media-body">
-                                    <h4>{{ $product->model->name }}</h4>
-                                    <p>{{ $product->model->details }}</p>
+                                    <h4>Product Name</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis elementum lacinia sem in laoreet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec sed tortor quis neque pharetra venenatis. Curabitur vehicula fermentum placerat. Maecenas rhoncus augue ac erat pharetra ultrices. Sed consectetur in eros sit amet scelerisque.</p>
                                 </div>
                             </td>
                             <td>
-                            <h5>$ {{ $product->price }}</h5>
+                            <h5>$ 6</h5>
                             </td>
                             <td>
                                 <div class="product_count"> 
-                                <input type="text" name="qty" id="sst" maxlength="12" value="{{ $product->qty }}" title="Quantity:"
+                                <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
                                         class="input-text qty">
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                         class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
@@ -64,20 +65,14 @@
                                 </div>
                             </td>
                             <td>
-                                <form action="{{ route('cart.destroy', $product->rowId) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-
-                                    <button type="submit" class="btn btn-link">Remove</button>
-                                </form>
-                                <form action="{{ route('cart.later', $product->rowId) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-link">Save for later</button>
-                                </form>
+                                <button type="submit" class="btn btn-link">Remove</button>
+                                <button type="submit" class="btn btn-link">Save for later</button>
                             </td>
                         </tr>
-                        @endforeach
                         <tr>
+                            <td>
+
+                            </td>
                             <td>
 
                             </td>
@@ -90,9 +85,9 @@
                                 <h4>Total</h4>
                             </td>
                             <td class="border">
-                                <h5>{{ Cart::subtotal() }}</h5>
-                                <p>{{ Cart::tax() }}</p>
-                                <h4>{{ Cart::total() }}</h4>
+                                <h5>6.00</h5>
+                                <p>0.85</p>
+                                <h4>6.85</h4>
                             </td>
                         </tr>
                         <tr class="out_button_area">
@@ -112,60 +107,36 @@
                     </tbody>
                 </table>
                 <div class="checkout_btn_inner d-flex align-items-center justify-content-around mb-3">
-                    <a class="gray_btn" href="{{ route('shop.index') }}">Continue Shopping</a>
-                    <a class="primary-btn" href="{{ route('checkout.index') }}">Proceed to checkout</a>
+                    <a class="gray_btn" href="#">Continue Shopping</a>
+                    <a class="primary-btn" href="#">Proceed to checkout</a>
                 </div>
             </div>
-            @else
-                <h3 class="my-3 text-center">No item in shopping cart</h3>
-                <a class="btn btn-link my-5" href="{{ route('shop.index') }}">Continue shopping</a>
-            @endif
         </div>
     </div>
     <div class="single-product-slider">
         <div class="container">
-            @if (Cart::instance('saveForLater')->count() > 0)
-            <h2 class="text-center my-5">{{ Cart::instance('saveForLater')->count() }} item(s) saved for later !</h2> 
+            <h2 class="text-center my-5">1 item(s) saved for later !</h2> 
             <div class="row">
                     <!-- single product -->
-                    @foreach (Cart::instance('saveForLater')->content() as $product)
                     <div class="col-lg-3 col-md-6">
                         <div class="single-product">
-                            <img class="img-fluid" src="{{ Voyager::image($product->image) }}" alt="">
+                            <img class="img-fluid" src="{{ asset('img/logo.png')}}" alt="">
                             <div class="product-details">
-                                <h6>{{ $product->model->name }}</h6>
+                                <h6>Product Name</h6>
                                 <div class="price">
-                                    <h6>${{ $product->model->price}}</h6>
+                                    <h6>$ 8</h6>
                                 </div>
                                 <div class="prd-bottom">
-                                    <form action="{{ route('saveForLater.destroy', $product->rowId) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-    
-                                        <button type="submit" class="btn btn-link">Remove</button>
-                                    </form>
-                                    <form action="{{ route('saveForLater.later', $product->rowId) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-link">Move to Cart</button>
-                                    </form>
+                                    <button type="submit" class="btn btn-link">Remove</button>
+                                    <button type="submit" class="btn btn-link">Move to Cart</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                @else 
-                    <h3 class="text-center">No items saved for later.</h3>
-                @endif 
             </div>
         </div>
     </div>
 </section>
 <!--================End Cart Area =================-->
 
-@stop
-
-@section('js')
-<script>
-    console.log('hello cart page')
-    </script>
 @stop

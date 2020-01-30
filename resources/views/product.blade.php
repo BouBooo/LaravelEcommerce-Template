@@ -3,7 +3,19 @@
 @section('content')
 
 <!-- Start Banner Area -->
-{!! Breadcrumbs::render('product', $product) !!}
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Product</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="category.html">Product</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- End Banner Area -->
 
 <!--================Single Product Area =================-->
@@ -13,33 +25,22 @@
             <div class="col-lg-6">
                 <div class="s_Product_carousel">
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="{{ Voyager::image($product->image) }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/logo.png')}}" alt="">
                     </div>
-                    @foreach (json_decode($product->images, true) as $img)
-                        <img class="img-fluid" src="{{ Voyager::image($img) }}" alt="">
-                    @endforeach
                 </div>
-                {{-- {{ dd($product->category_id) }} --}}
-                
             </div>
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
-                    <h3>{{ $product->name }}</h3>
+                    <h3>Product Name</h3>
                     
-                    <h2>$ {{ $product->price }}</h2>
+                    <h2>$ 6</h2>
                     <ul class="list">
-                    <li><a href="{{ route('shop.index', [ 'category' => $category->slug ]) }}"><span>Category</span> : {{ $category->name }}</a></li>
+                    <li><a href="#"><span>Category</span> : Category Name</a></li>
                         <li><a href="#"><span>Availibility</span> : In Stock</a></li>
                     </ul>
-                    <p>{{ $product->details }}</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis scelerisque diam quis lorem dictum tempus ac ac urna. Etiam eros magna, molestie quis bibendum quis, efficitur at est. Curabitur id suscipit lacus. Quisque vehicula placerat erat nec tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean tempor aliquet dui, sed fringilla urna egestas vitae. Suspendisse ut iaculis ipsum, vitae interdum nunc.</p>
                     <div class="card_area d-flex align-items-center">
-                        <form action="{{ route('cart.store') }}" method="POST">
-                            {{ csrf_field( )}}
-                            <input type="hidden" name="id" value="{{ $product->id }}">
-                            <input type="hidden" name="name" value="{{ $product->name }}">
-                            <input type="hidden" name="price" value="{{ $product->price }}">
                             <button class="primary-btn" type="submit">Add to Cart</button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -62,7 +63,7 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <p>{{ $product->description }}</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis scelerisque diam quis lorem dictum tempus ac ac urna. Etiam eros magna, molestie quis bibendum quis, efficitur at est. Curabitur id suscipit lacus. Quisque vehicula placerat erat nec tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean tempor aliquet dui, sed fringilla urna egestas vitae. Suspendisse ut iaculis ipsum, vitae interdum nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis scelerisque diam quis lorem dictum tempus ac ac urna. Etiam eros magna, molestie quis bibendum quis, efficitur at est. Curabitur id suscipit lacus. Quisque vehicula placerat erat nec tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean tempor aliquet dui, sed fringilla urna egestas vitae. Suspendisse ut iaculis ipsum, vitae interdum nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis scelerisque diam quis lorem dictum tempus ac ac urna. Etiam eros magna, molestie quis bibendum quis, efficitur at est. Curabitur id suscipit lacus. Quisque vehicula placerat erat nec tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean tempor aliquet dui, sed fringilla urna egestas vitae. Suspendisse ut iaculis ipsum, vitae interdum nunc.</p>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="table-responsive">
